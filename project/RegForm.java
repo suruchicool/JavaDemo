@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 
-class RegForm
+public class RegForm
 {
 	JFrame f;
 	JPanel p;
@@ -10,8 +10,12 @@ class RegForm
 	JPasswordField pwd1,pwd2;
 	JButton b1,b2,b3;
 
-	RegForm()
+	//constructor
+
+	public RegForm()
 	{
+		//creating objects for each component
+
 		f=new JFrame("Registration Form");
 		p=new JPanel();
 		l1=new JLabel("First Name");
