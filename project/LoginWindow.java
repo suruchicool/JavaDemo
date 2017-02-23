@@ -1,8 +1,9 @@
 import java.awt.*;
 import javax.swing.*;
 
-class LoginWindow
+public class LoginWindow
 {
+	// adding attributes
 	JFrame f1;
 	JPanel p1;
 	JLabel l1,l2;
@@ -11,8 +12,9 @@ class LoginWindow
 	JButton b1,b2,b3;
 	Font p;
 	
+	// adding constructor
 
-	LoginWindow()
+	public LoginWindow()
 	{
 		f1=new JFrame("Login Window");
 		p1=new JPanel();
