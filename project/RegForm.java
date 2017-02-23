@@ -10,7 +10,7 @@ public class RegForm
 	JPasswordField pwd1,pwd2;
 	JButton b1,b2,b3;
 
-	//constructor
+	//constructor 
 
 	public RegForm()
 	{
