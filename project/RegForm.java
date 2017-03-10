@@ -143,10 +143,7 @@ class RegForm implements ActionListener
 		f.setVisible(true);
 	}
 
-	public static void main(String s[])
-	{
-		new RegForm();
-	}
+
 	@Override
 	public void actionPerformed(ActionEvent e){
 
@@ -162,8 +159,8 @@ class RegForm implements ActionListener
 
 				try{
 						Class.forName("oracle.jdbc.driver.OracleDriver");
-						Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","hr","Suruchi$123manoj");
-						PreparedStatement rs=con.prepareStatement("insert into reg values(?,?,?,?,?,?,?)");
+						Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","hr","password");
+						PreparedStatement rs=con.prepareStatement("insert into reg(id,f_name,m_name,l_name,dob,email_id,pwd,c_pwd,role) values(uid_seq.NEXTVAL,?,?,?,?,?,?,?,?)");
 
 						rs.setString(1,s1);
 						rs.setString(2,s2);
@@ -171,7 +168,8 @@ class RegForm implements ActionListener
 						rs.setString(4,s4);
 						rs.setString(5,s5);
 						rs.setString(6,s6);
-						rs.setString(7,s6);
+						rs.setString(7,s7);
+						rs.setString(8,"ROLE_USER");
 
 						int i=rs.executeUpdate();
 

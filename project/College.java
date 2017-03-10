@@ -3,7 +3,7 @@ import java.awt.*;
 import java.sql.*;
 import java.awt.event.*;
 
-class College
+class College implements ActionListener
 {
 
 
@@ -16,7 +16,7 @@ class College
 	JButton b1;
 
 
-
+	Connection con=null;
 
 
 
@@ -27,10 +27,10 @@ class College
 	{
 		f=new JFrame("College Details");
 		c1=new JComboBox();
+		c1.addActionListener(this);
 		p=new JPanel();
 		p1=new JPanel();
 		lp=new JLayeredPane();
-		//l0=new JLabel("Select College");
 		l1=new JLabel("College ID");
 		t1=new JTextField();
 		l2=new JLabel("College Address");
@@ -52,18 +52,19 @@ class College
 		l10=new JLabel("Transportation Fee");
 		t10=new JTextField();
 		b1=new JButton("Proceed to Admission");
+		b1.addActionListener(this);
 
 		f.setSize(500,1000);
 		f.add(lp);
 		p.add(c1);
-		p.add(l0);
 
 		lp.add(p, new Integer(0));
 		lp.add(p1, new Integer(1));
 
 
-		p.setBounds(100,100,300,30);
+		p.setBounds(100,50,300,300);
 		p1.setBounds(50,200,600,700);
+
 
 		p1.add(l1);
 		p1.add(t1);
@@ -123,7 +124,7 @@ class College
 		try{
 
 		Class.forName("oracle.jdbc.driver.OracleDriver");
-		Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORCL","hr","abc");
+		con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORCL","hr","password");
 		Statement st=con.createStatement();
 		ResultSet rs=st.executeQuery("select c_name from clg");
 
@@ -141,10 +142,44 @@ class College
 		f.setVisible(true);
 		f.setResizable(false);
 	}
-	public static void main(String [] ar)
-	{
-			new College();
-	}
+	@Override
+	    public void actionPerformed(ActionEvent e) {
+
+			if(e.getSource()==b1)
+			{
+				new ApplicantPersonalForm();
+				f.setVisible(false);
+			}
+	        JComboBox combo = (JComboBox) e.getSource();
+	        String clg_name = (String) c1.getSelectedItem();
+
+			try {
+
+				Statement st1=con.createStatement();
+	            ResultSet rs1=st1.executeQuery("select id,c_add,email,bba,bca,contact,placement,course_fee,canteen,t_fare from clg where c_name='"+clg_name+"'");
+
+				while(rs1.next())
+				{
+
+	            t1.setText(rs1.getString(1));
+	            t2.setText(rs1.getString(2));
+	            t3.setText(rs1.getString(3));
+	            t4.setText(rs1.getString(4));
+	            t5.setText(rs1.getString(5));
+	            t6.setText(rs1.getString(6));
+	            t7.setText(rs1.getString(7));
+	            t8.setText(rs1.getString(8));
+	            t9.setText(rs1.getString(9));
+	            t10.setText(rs1.getString(10));
+			}
+
+		}catch(Exception e1)
+		{
+			e1.printStackTrace();
+		}
+    }
+
+
 
 
 

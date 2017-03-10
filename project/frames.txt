@@ -1,0 +1,44 @@
+
+Personal details
+-------------------
+applicant's name
+age
+gender
+DOB
+address
+mob
+father's name
+father's occupation
+mother's name
+
+buttons next and back
+
+Educational detais
+--------------------
+10th percentage
+10th board
+year of passing
+School
+
+12th percentage
+12th board
+year of passing 
+college
+
+buttons next and back
+
+Take admission
+------------------
+stream radio button
+college name
+
+buttons next and back
+
+next frame
+----------------
+applicant's name
+college name
+branch
+annual fee
+
+buttons freeze and finish
