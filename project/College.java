@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 import java.awt.*;
 import java.sql.*;
@@ -8,12 +9,13 @@ class College implements ActionListener
 
 
 	JFrame f;
-	JPanel p,p1;
+	JPanel p,p1,p2;
 	JComboBox c1;
 	JLayeredPane lp;
-    JLabel l1,l2,l3,l4,l5,l6,l7,l8,l9,l10;
+    JLabel l,l1,l2,l3,l4,l5,l6,l7,l8,l9,l10;
 	JTextField t1,t2,t3,t4,t5,t6,t7,t8,t9,t10;
 	JButton b1;
+	Font f1;
 
 
 	Connection con=null;
@@ -30,7 +32,9 @@ class College implements ActionListener
 		c1.addActionListener(this);
 		p=new JPanel();
 		p1=new JPanel();
+		p2=new JPanel();
 		lp=new JLayeredPane();
+		l=new JLabel();
 		l1=new JLabel("College ID");
 		t1=new JTextField();
 		l2=new JLabel("College Address");
@@ -53,17 +57,40 @@ class College implements ActionListener
 		t10=new JTextField();
 		b1=new JButton("Proceed to Admission");
 		b1.addActionListener(this);
+		Font f1=new Font("Comic Sans MS",Font.ITALIC,16);
 
-		f.setSize(500,1000);
+		f.setSize(1000,1000);
 		f.add(lp);
 		p.add(c1);
+		p2.add(l);
 
-		lp.add(p, new Integer(0));
-		lp.add(p1, new Integer(1));
+		l1.setFont(f1);
+		l2.setFont(f1);
+		l3.setFont(f1);
+		l4.setFont(f1);
+		l5.setFont(f1);
+		l6.setFont(f1);
+		l7.setFont(f1);
+		l8.setFont(f1);
+		l9.setFont(f1);
+		l10.setFont(f1);
+		b1.setFont(f1);
+		c1.setFont(f1);
+
+		p.setOpaque(false);
+		p1.setOpaque(false);
+
+		l.setIcon(new ImageIcon("workspace_bg1.jpg"));
+		p1.setLayout(new GridBagLayout());
+
+		lp.add(p2, new Integer(0));
+		lp.add(p, new Integer(2));
+		lp.add(p1, new Integer(5));
 
 
-		p.setBounds(100,50,300,300);
-		p1.setBounds(50,200,600,700);
+		p.setBounds(370,70,250,300);
+		p1.setBounds(0,60,1000,900);
+		p2.setBounds(0,0,1000,1000);
 
 
 		p1.add(l1);
@@ -90,27 +117,27 @@ class College implements ActionListener
 
 
 
-		l1.setBounds(60,0,140,20);
-		t1.setBounds(210,0,180,20);
-		l2.setBounds(60,40,140,20);
-		t2.setBounds(210,40,180,20);
-		l3.setBounds(60,80,140,20);
-		t3.setBounds(210,80,180,20);
-		l4.setBounds(60,120,140,20);
-		t4.setBounds(210,120,180,20);
-		l5.setBounds(60,160,140,20);
-		t5.setBounds(210,160,180,20);
-		l6.setBounds(60,200,140,20);
-		t6.setBounds(210,200,180,20);
-		l7.setBounds(60,240,140,20);
-		t7.setBounds(210,240,180,20);
-		l8.setBounds(60,280,140,20);
-		t8.setBounds(210,280,180,20);
-		l9.setBounds(60,320,140,20);
-		t9.setBounds(210,320,180,20);
-		l10.setBounds(60,360,140,20);
-		t10.setBounds(210,360,180,20);
-		b1.setBounds(120,420,200,30);
+		l1.setBounds(300,70,200,20);
+		t1.setBounds(500,70,180,20);
+		l2.setBounds(300,110,200,20);
+		t2.setBounds(500,110,180,20);
+		l3.setBounds(300,160,200,20);
+		t3.setBounds(500,160,180,20);
+		l4.setBounds(300,210,200,20);
+		t4.setBounds(500,210,180,20);
+		l5.setBounds(300,260,200,20);
+		t5.setBounds(500,260,180,20);
+		l6.setBounds(300,310,200,20);
+		t6.setBounds(500,310,180,20);
+		l7.setBounds(300,360,200,20);
+		t7.setBounds(500,360,180,20);
+		l8.setBounds(300,410,200,20);
+		t8.setBounds(500,410,180,20);
+		l9.setBounds(300,460,200,20);
+		t9.setBounds(500,460,180,20);
+		l10.setBounds(300,510,200,20);
+		t10.setBounds(500,510,180,20);
+		b1.setBounds(380,560,200,30);
 
 
 
@@ -150,7 +177,7 @@ class College implements ActionListener
 				new ApplicantPersonalForm();
 				f.setVisible(false);
 			}
-	        JComboBox combo = (JComboBox) e.getSource();
+	        //JComboBox combo = (JComboBox) e.getSource();
 	        String clg_name = (String) c1.getSelectedItem();
 
 			try {

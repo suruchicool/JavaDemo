@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 /*
 
 This class is going to have personal details of the form
@@ -39,6 +40,7 @@ public class ApplicantPersonalForm implements ActionListener
 					t7=new JTextField(15);
 					r1=new JRadioButton("Male");
 					r2=new JRadioButton("Female");
+					ButtonGroup bg=new ButtonGroup();
 					ta=new JTextArea();
 					b1=new JButton("Next");
 					b1.addActionListener(this);
@@ -46,6 +48,8 @@ public class ApplicantPersonalForm implements ActionListener
 					b2.addActionListener(this);
 					f1.setSize(1000,1000);
 					f1.add(p);
+					bg.add(r1);
+					bg.add(r2);
 
 					p.setLayout(new GridBagLayout());
 
@@ -157,11 +161,45 @@ public class ApplicantPersonalForm implements ActionListener
 		}
 		public void actionPerformed(ActionEvent e)
 		{
+			String rb;
+
+			if(r1.isSelected())
+			{
+				rb=r1.getText();
+			}
+			else
+			{
+				rb=r2.getText();
+			}
+
 			if(e.getSource()==b1)
 			{
-				new ApplicantEducationForm();
+				try{
+
+						Class.forName("oracle.jdbc.driver.OracleDriver");
+						Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORCL","hr","password");
+						PreparedStatement ps=con.prepareStatement("insert into personal_details(id,name,dob,age,gender,address,contact,father_name,father_occ,mother_name) values(personal_det_seq.NEXTVAL,?,?,?,?,?,?,?,?,?)");
+
+						ps.setString(1,t1.getText().toString()); // applicant name
+						ps.setString(2,t2.getText().toString()); // dob
+						ps.setString(3,t3.getText().toString()); // age
+						ps.setString(4,rb.toString()); // gender
+						ps.setString(5,ta.getText().toString()); // address
+						ps.setString(6,t4.getText().toString()); // contact
+						ps.setString(7,t5.getText().toString()); // father name
+						ps.setString(8,t6.getText().toString()); // father occupation
+						ps.setString(9,t7.getText().toString()); // father name
+
+						int i=ps.executeUpdate();
+				System.out.println(i+"record inserted");
+				 ApplicantEducationForm();
 				f1.setVisible(false);
 			}
+			catch(Exception ae)
+			{
+				ae.printStackTrace();
+			}
+
 			if(e.getSource()==b2)
 			{
 				new College();
@@ -169,6 +207,6 @@ public class ApplicantPersonalForm implements ActionListener
 			}
 		}
 
-
+}
 
 }
