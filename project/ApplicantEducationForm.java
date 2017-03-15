@@ -15,15 +15,19 @@ matriculation, intermediate,  or any other education
 public class ApplicantEducationForm implements ActionListener
 {
 	JFrame f1;
-	JPanel p;
-	JLabel l0,l1,l2,l3,l4,l5,l6,l7,l8,l9,l10;
+	JPanel p,p0;
+	JLabel l,l0,l1,l2,l3,l4,l5,l6,l7,l8,l9,l10;
 	JTextField t0,t1,t2,t3,t4,t5,t6,t7,t8;
 	JButton b1,b2;
+	JLayeredPane lp;
+	Font f;
 
 	public ApplicantEducationForm()
 	{
 		f1=new JFrame("Applicant's Educational Details");
 		p=new JPanel();
+		p0=new JPanel();
+		l=new JLabel();
 		l0=new JLabel("Applicant ID");
 		l1=new JLabel("Matriculation Details:");
 		l2=new JLabel("Xth Percentage");
@@ -47,9 +51,34 @@ public class ApplicantEducationForm implements ActionListener
 		b1=new JButton("Next");
 		b1.addActionListener(this);
 		b2=new JButton("Back");
+		lp=new JLayeredPane();
+		f=new Font("Comic Sans MS",Font.ITALIC,16);
 		b2.addActionListener(this);
-		f1.setSize(500,500);
-		f1.add(p);
+		f1.setSize(1000,1000);
+		f1.add(lp);
+		p0.add(l);
+		p.setOpaque(false);
+
+		l1.setFont(f);
+		l2.setFont(f);
+		l3.setFont(f);
+		l4.setFont(f);
+		l5.setFont(f);
+		l6.setFont(f);
+		l7.setFont(f);
+		l8.setFont(f);
+		l9.setFont(f);
+		l10.setFont(f);
+		b1.setFont(f);
+		b2.setFont(f);
+
+		l.setIcon(new ImageIcon("workspace_bg3.jpg"));
+
+		lp.add(p0,new Integer(0));
+		lp.add(p,new Integer(1));
+
+		p0.setBounds(0,0,1000,1000);
+		p.setBounds(0,0,1000,750);
 
 		p.setLayout(new GridBagLayout());
 
@@ -189,7 +218,7 @@ public class ApplicantEducationForm implements ActionListener
 
 									int i=ps.executeUpdate();
 							System.out.println(i+"record inserted");
-							 //ApplicantEducationForm();
+							 new ApplicationForm();
 							f1.setVisible(false);
 						}
 						catch(Exception ae)
@@ -199,8 +228,8 @@ public class ApplicantEducationForm implements ActionListener
 		}
 		if(e.getSource()==b2)
 		{
-			//new ApplicantPersonalForm();
-		//	f1.setVisible(false);
+			new ApplicantEducationForm();
+			f1.setVisible(false);
 		}
 	}
 	public static void main(String s[])

@@ -15,6 +15,8 @@ public class LoginWindow implements ActionListener
 	Font f;
 	JLayeredPane lp;
 
+	String role;
+
 	// adding constructor
 
 	 public LoginWindow()
@@ -107,6 +109,7 @@ public class LoginWindow implements ActionListener
 	public void actionPerformed(ActionEvent ae)
 	{
 
+
 		if(ae.getSource()==b1)
 		{
 
@@ -118,24 +121,36 @@ public class LoginWindow implements ActionListener
 			 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			 			Connection con=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:ORCL","hr","password");
 			 			Statement st=con.createStatement();
-			 			ResultSet rs=st.executeQuery("select email_id,pwd from reg");
+			 			ResultSet rs=st.executeQuery("select email_id,pwd,role from reg");
 			 	       	while(rs.next()){
 
 			 				String s1=rs.getString(1);
 			 				String s2=rs.getString(2);
+							String role_status=rs.getString(3); // fetching the role
 
 			 				if(s1.equals(x) && s2.equals(y)){
 
-			 					System.out.println("Connected to the Database!!"+s1 + s2);
+			 					System.out.println("Connected to the Database!!"+s1 + s2+role_status);
 			 					//JOptionPane.showMessageDialog(null,new String("Welcome"+s1));
+			 					if(role_status.equalsIgnoreCase("ROLE_USER")){
+									new College();
+									f1.setVisible(false);
+								}
+								else if(role_status.equalsIgnoreCase("ROLE_ADMIN"))
+								{
+									new AdminWindow();// Admin panel
+									f1.setVisible(false);
+								}
 
-			 					new College();
-			 					f1.setVisible(false);
+
+
+
+							}
 
 			 				}
 
 
-			 			}
+
 
 			 		}
 			 		catch(Exception ex){

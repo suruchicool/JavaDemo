@@ -57,7 +57,7 @@ class College implements ActionListener
 		t10=new JTextField();
 		b1=new JButton("Proceed to Admission");
 		b1.addActionListener(this);
-		Font f1=new Font("Comic Sans MS",Font.ITALIC,16);
+		f1=new Font("Comic Sans MS",Font.ITALIC,16);
 
 		f.setSize(1000,1000);
 		f.add(lp);
